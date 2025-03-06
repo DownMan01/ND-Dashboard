@@ -469,6 +469,7 @@ export default function LoginPage() {
                     <Input
                       id="password"
                       type="password"
+                      placeholder="enter your p@s5w0rD"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
