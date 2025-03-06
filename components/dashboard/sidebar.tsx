@@ -23,6 +23,7 @@ export function Sidebar() {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden"
     } else {
+      
       document.body.style.overflow = ""
     }
 
@@ -46,7 +47,7 @@ export function Sidebar() {
       <div className="sticky top-0 z-30 flex items-center justify-between bg-background px-4 py-2 border-b lg:hidden">
         <Link href="/dashboard" className="flex items-center space-x-2">
           <Gift className="w-6 h-6 text-primary" />
-          <span className="font-bold text-xl">NoteDrop</span>
+          <span href="/" className="font-bold text-xl">NoteDrop</span>
         </Link>
         <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           <Menu className="h-6 w-6" />
@@ -73,7 +74,7 @@ export function Sidebar() {
           <div className="flex items-center justify-between px-6 py-4 border-b">
             <Link href="/dashboard" className="flex items-center space-x-2">
               <Gift className="w-6 h-6 text-primary" />
-              <span className="font-bold text-xl">NoteDrop</span>
+              <span href="/" className="font-bold text-xl">NoteDrop</span>
             </Link>
             <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)}>
               <X className="h-6 w-6" />
@@ -111,7 +112,7 @@ export function Sidebar() {
       <div className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:top-0 lg:bottom-0 lg:border-r lg:bg-background">
         <div className="flex items-center gap-2 px-6 py-4 border-b">
           <Gift className="w-6 h-6 text-primary" />
-          <span className="font-bold text-xl">NoteDrop</span>
+          <span href="/" className="font-bold text-xl">NoteDrop</span>
         </div>
         <nav className="flex-1 overflow-auto px-4 py-6 space-y-1">
           {navItems.map((item) => (
