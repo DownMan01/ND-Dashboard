@@ -432,9 +432,9 @@ export default function LoginPage() {
           {/* Login card with glass effect - adjusted for mobile */}
           <Card className="backdrop-blur-sm bg-card/80 border-primary/10 shadow-xl">
             <CardHeader className="space-y-1 p-4 sm:p-6 pb-2 sm:pb-4">
-              <CardTitle className="text-xl sm:text-2xl font-bold text-center">Welcome back</CardTitle>
+              <CardTitle className="text-xl sm:text-2xl font-bold text-center">Welcome back!</CardTitle>
               <CardDescription className="text-center text-xs sm:text-sm">
-                Enter your credentials to access your account
+                Enter your credentials to access the dashboard
               </CardDescription>
             </CardHeader>
             <CardContent className="p-4 sm:p-6">
