@@ -30,7 +30,7 @@ export default function EditCollectionPage({ params }: { params: { id: string } 
     backers: "",
     chain: "",
     cost: "",
-    stage: "upcoming",
+    stage: "Upcoming",
     requirements: [
       { id: 1, title: "" },
       { id: 2, title: "" },
@@ -328,9 +328,9 @@ export default function EditCollectionPage({ params }: { params: { id: string } 
                       <SelectValue placeholder="Select stage" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="upcoming">Upcoming</SelectItem>
-                      <SelectItem value="active">Active</SelectItem>
-                      <SelectItem value="ended">Ended</SelectItem>
+                      <SelectItem value="Upcoming">Upcoming</SelectItem>
+                      <SelectItem value="Active">Active</SelectItem>
+                      <SelectItem value="Ended">Ended</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
