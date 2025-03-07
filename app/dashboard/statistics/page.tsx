@@ -78,9 +78,9 @@ export default function StatisticsPage() {
   // Calculate statistics
   const stats = {
     totalCollections: collections.length,
-    activeCollections: collections.filter((c) => c.stage === "active").length,
-    upcomingCollections: collections.filter((c) => c.stage === "upcoming").length,
-    completedCollections: collections.filter((c) => c.stage === "ended").length,
+    ActiveCollections: collections.filter((c) => c.stage === "Active").length,
+    UpcomingCollections: collections.filter((c) => c.stage === "Upcoming").length,
+    completedCollections: collections.filter((c) => c.stage === "Ended").length,
     totalValue: collections.reduce((sum, c) => sum + (c.cost || 0), 0),
     uniqueChains: [...new Set(collections.map((c) => c.chain))].length,
     chainDistribution: [...new Set(collections.map((c) => c.chain))].map((chain) => ({
@@ -88,9 +88,9 @@ export default function StatisticsPage() {
       count: collections.filter((c) => c.chain === chain).length,
     })),
     stageDistribution: [
-      { name: "Active", value: collections.filter((c) => c.stage === "active").length, color: "#22c55e" },
-      { name: "Upcoming", value: collections.filter((c) => c.stage === "upcoming").length, color: "#3b82f6" },
-      { name: "Ended", value: collections.filter((c) => c.stage === "ended").length, color: "#6b7280" },
+      { name: "Active", value: collections.filter((c) => c.stage === "Active").length, color: "#22c55e" },
+      { name: "Upcoming", value: collections.filter((c) => c.stage === "Upcoming").length, color: "#3b82f6" },
+      { name: "Ended", value: collections.filter((c) => c.stage === "Ended").length, color: "#6b7280" },
     ],
   }
 
@@ -103,9 +103,9 @@ export default function StatisticsPage() {
     const monthlyData = monthNames.map((month) => ({
       month,
       collections: 0,
-      active: 0,
-      upcoming: 0,
-      ended: 0,
+      Active: 0,
+      Upcoming: 0,
+      Ended: 0,
     }))
 
     // Fill with actual data
@@ -115,12 +115,12 @@ export default function StatisticsPage() {
         const monthIndex = date.getMonth()
         monthlyData[monthIndex].collections++
 
-        if (collection.stage === "active") {
-          monthlyData[monthIndex].active++
-        } else if (collection.stage === "upcoming") {
-          monthlyData[monthIndex].upcoming++
-        } else if (collection.stage === "ended") {
-          monthlyData[monthIndex].ended++
+        if (collection.stage === "Active") {
+          monthlyData[monthIndex].Active++
+        } else if (collection.stage === "Upcoming") {
+          monthlyData[monthIndex].Upcoming++
+        } else if (collection.stage === "Ended") {
+          monthlyData[monthIndex].Ended++
         }
       }
     })
@@ -139,21 +139,21 @@ export default function StatisticsPage() {
     const currentTotal = monthlyData[currentMonth].collections
     const previousTotal = monthlyData[previousMonth].collections
 
-    const currentActive = monthlyData[currentMonth].active
-    const previousActive = monthlyData[previousMonth].active
+    const currentActive = monthlyData[currentMonth].Active
+    const previousActive = monthlyData[previousMonth].Active
 
-    const currentUpcoming = monthlyData[currentMonth].upcoming
-    const previousUpcoming = monthlyData[previousMonth].upcoming
+    const currentUpcoming = monthlyData[currentMonth].Upcoming
+    const previousUpcoming = monthlyData[previousMonth].Upcoming
 
-    const currentEnded = monthlyData[currentMonth].ended
-    const previousEnded = monthlyData[previousMonth].ended
+    const currentEnded = monthlyData[currentMonth].Ended
+    const previousEnded = monthlyData[previousMonth].Ended
 
     return {
       total: previousTotal === 0 ? 100 : Math.round(((currentTotal - previousTotal) / previousTotal) * 100),
-      active: previousActive === 0 ? 100 : Math.round(((currentActive - previousActive) / previousActive) * 100),
-      upcoming:
+      Active: previousActive === 0 ? 100 : Math.round(((currentActive - previousActive) / previousActive) * 100),
+      Upcoming:
         previousUpcoming === 0 ? 100 : Math.round(((currentUpcoming - previousUpcoming) / previousUpcoming) * 100),
-      ended: previousEnded === 0 ? 100 : Math.round(((currentEnded - previousEnded) / previousEnded) * 100),
+      Ended: previousEnded === 0 ? 100 : Math.round(((currentEnded - previousEnded) / previousEnded) * 100),
     }
   }
 
@@ -181,15 +181,15 @@ export default function StatisticsPage() {
                 </div>
                 <div className="flex justify-between">
                   <span>Active:</span>
-                  <span className="text-green-500">{month.active}</span>
+                  <span className="text-green-500">{month.Active}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Upcoming:</span>
-                  <span className="text-blue-500">{month.upcoming}</span>
+                  <span className="text-blue-500">{month.Upcoming}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Ended:</span>
-                  <span className="text-gray-500">{month.ended}</span>
+                  <span className="text-gray-500">{month.Ended}</span>
                 </div>
               </div>
 
@@ -202,11 +202,11 @@ export default function StatisticsPage() {
                 }}
               >
                 {/* Stacked sections */}
-                {month.active > 0 && (
+                {month.Active > 0 && (
                   <div
                     className="absolute bottom-0 w-full transition-all duration-300 ease-in-out"
                     style={{
-                      height: `${(month.active / month.collections) * 100}%`,
+                      height: `${(month.Active / month.collections) * 100}%`,
                       background: "linear-gradient(to top, rgba(34, 197, 94, 0.7), rgba(34, 197, 94, 0.9))",
                     }}
                   />
@@ -283,7 +283,7 @@ export default function StatisticsPage() {
                 <feGaussianBlur stdDeviation="2" result="blur" />
                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
               </filter>
-              <linearGradient id="activeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <linearGradient id="ActiveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="rgb(34, 197, 94)" stopOpacity="1" />
                 <stop offset="100%" stopColor="rgb(34, 197, 94)" stopOpacity="0.1" />
               </linearGradient>
@@ -359,7 +359,7 @@ export default function StatisticsPage() {
                       Total: {month.collections}
                     </text>
                     <text x={point[0]} y={point[1] - 10} textAnchor="middle" fontSize="6" fill="rgb(34, 197, 94)">
-                      Active: {month.active}
+                      Active: {month.Active}
                     </text>
                   </g>
                 </g>
@@ -468,7 +468,7 @@ export default function StatisticsPage() {
         // Create CSV content
         const headers = ["Month", "Total Collections", "Active", "Upcoming", "Ended"]
         const rows = monthlyData.map((month) =>
-          [month.month, month.collections, month.active, month.upcoming, month.ended].join(","),
+          [month.month, month.collections, month.Active, month.Upcoming, month.Ended].join(","),
         )
         content = [headers.join(","), ...rows].join("\n")
         fileName = "notedrop-statistics.csv"
@@ -478,8 +478,8 @@ export default function StatisticsPage() {
         const data = {
           summary: {
             totalCollections: stats.totalCollections,
-            activeCollections: stats.activeCollections,
-            upcomingCollections: stats.upcomingCollections,
+            ActiveCollections: stats.ActiveCollections,
+            UpcomingCollections: stats.UpcomingCollections,
             completedCollections: stats.completedCollections,
             totalValue: stats.totalValue,
             uniqueChains: stats.uniqueChains,
@@ -610,23 +610,23 @@ export default function StatisticsPage() {
                   </div>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Collections currently in the active stage</p>
+                  <p>Collections currently in the Active stage</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
           </CardHeader>
           <CardContent className="p-3 md:pt-4">
-            <div className="text-xl md:text-2xl font-bold">{stats.activeCollections}</div>
+            <div className="text-xl md:text-2xl font-bold">{stats.ActiveCollections}</div>
             <div className="flex items-center mt-1">
               <span
-                className={`text-xs ${growthPercentages.active >= 0 ? "text-green-600" : "text-red-600"} flex items-center`}
+                className={`text-xs ${growthPercentages.Active >= 0 ? "text-green-600" : "text-red-600"} flex items-center`}
               >
-                {growthPercentages.active >= 0 ? (
+                {growthPercentages.Active >= 0 ? (
                   <TrendingUp className="mr-1 h-3 w-3" />
                 ) : (
                   <LineChartIcon className="mr-1 h-3 w-3" />
                 )}
-                {Math.abs(growthPercentages.active)}%
+                {Math.abs(growthPercentages.Active)}%
               </span>
             </div>
           </CardContent>
@@ -841,8 +841,8 @@ export default function StatisticsPage() {
               <tbody>
                 <tr className="border-b hover:bg-muted/50 transition-colors">
                   <td className="py-2 md:py-3 px-3 md:px-4">Collections</td>
-                  <td className="text-right py-2 md:py-3 px-3 md:px-4">{stats.activeCollections}</td>
-                  <td className="text-right py-2 md:py-3 px-3 md:px-4">{stats.upcomingCollections}</td>
+                  <td className="text-right py-2 md:py-3 px-3 md:px-4">{stats.ActiveCollections}</td>
+                  <td className="text-right py-2 md:py-3 px-3 md:px-4">{stats.UpcomingCollections}</td>
                   <td className="text-right py-2 md:py-3 px-3 md:px-4">{stats.completedCollections}</td>
                   <td className="text-right py-2 md:py-3 px-3 md:px-4 font-medium">{stats.totalCollections}</td>
                 </tr>
@@ -850,12 +850,12 @@ export default function StatisticsPage() {
                   <td className="py-2 md:py-3 px-3 md:px-4">Percentage</td>
                   <td className="text-right py-2 md:py-3 px-3 md:px-4">
                     {stats.totalCollections > 0
-                      ? `${Math.round((stats.activeCollections / stats.totalCollections) * 100)}%`
+                      ? `${Math.round((stats.ActiveCollections / stats.totalCollections) * 100)}%`
                       : "0%"}
                   </td>
                   <td className="text-right py-2 md:py-3 px-3 md:px-4">
                     {stats.totalCollections > 0
-                      ? `${Math.round((stats.upcomingCollections / stats.totalCollections) * 100)}%`
+                      ? `${Math.round((stats.UpcomingCollections / stats.totalCollections) * 100)}%`
                       : "0%"}
                   </td>
                   <td className="text-right py-2 md:py-3 px-3 md:px-4">
@@ -868,21 +868,21 @@ export default function StatisticsPage() {
                 <tr className="hover:bg-muted/50 transition-colors">
                   <td className="py-2 md:py-3 px-3 md:px-4">Monthly Growth</td>
                   <td className="text-right py-2 md:py-3 px-3 md:px-4">
-                    <span className={growthPercentages.active >= 0 ? "text-green-600" : "text-red-600"}>
-                      {growthPercentages.active >= 0 ? "+" : ""}
-                      {growthPercentages.active}%
+                    <span className={growthPercentages.Active >= 0 ? "text-green-600" : "text-red-600"}>
+                      {growthPercentages.Active >= 0 ? "+" : ""}
+                      {growthPercentages.Active}%
                     </span>
                   </td>
                   <td className="text-right py-2 md:py-3 px-3 md:px-4">
-                    <span className={growthPercentages.upcoming >= 0 ? "text-green-600" : "text-red-600"}>
-                      {growthPercentages.upcoming >= 0 ? "+" : ""}
-                      {growthPercentages.upcoming}%
+                    <span className={growthPercentages.Upcoming >= 0 ? "text-green-600" : "text-red-600"}>
+                      {growthPercentages.Upcoming >= 0 ? "+" : ""}
+                      {growthPercentages.Upcoming}%
                     </span>
                   </td>
                   <td className="text-right py-2 md:py-3 px-3 md:px-4">
-                    <span className={growthPercentages.ended >= 0 ? "text-green-600" : "text-red-600"}>
-                      {growthPercentages.ended >= 0 ? "+" : ""}
-                      {growthPercentages.ended}%
+                    <span className={growthPercentages.Ended >= 0 ? "text-green-600" : "text-red-600"}>
+                      {growthPercentages.Ended >= 0 ? "+" : ""}
+                      {growthPercentages.Ended}%
                     </span>
                   </td>
                   <td className="text-right py-2 md:py-3 px-3 md:px-4 font-medium">
