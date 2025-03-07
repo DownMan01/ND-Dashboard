@@ -31,7 +31,7 @@ export interface Database {
           backers?: string[]
           chain: string
           cost?: number | null
-          stage?: "active" | "upcoming" | "ended"
+          stage?: "Active" | "Upcoming" | "Ended"
           requirements?: Json
           how_to_steps?: Json
           user_id: string
@@ -47,7 +47,7 @@ export interface Database {
           backers?: string[]
           chain?: string
           cost?: number | null
-          stage?: "active" | "upcoming" | "ended"
+          stage?: "Active" | "Upcoming" | "Ended"
           requirements?: Json
           how_to_steps?: Json
           user_id?: string
