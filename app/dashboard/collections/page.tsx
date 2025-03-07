@@ -116,11 +116,11 @@ export default function CollectionsPage() {
   // Get stage color
   const getStageColor = (stage: string) => {
     switch (stage) {
-      case "active":
+      case "Active":
         return "bg-green-100 text-green-800 border-green-200"
-      case "upcoming":
+      case "Upcoming":
         return "bg-blue-100 text-blue-800 border-blue-200"
-      case "ended":
+      case "Ended":
         return "bg-gray-100 text-gray-800 border-gray-200"
       default:
         return "bg-gray-100 text-gray-800 border-gray-200"
@@ -384,9 +384,9 @@ export default function CollectionsPage() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">All Stages</SelectItem>
-                    <SelectItem value="active">Active</SelectItem>
-                    <SelectItem value="upcoming">Upcoming</SelectItem>
-                    <SelectItem value="ended">Ended</SelectItem>
+                    <SelectItem value="Active">Active</SelectItem>
+                    <SelectItem value="Upcoming">Upcoming</SelectItem>
+                    <SelectItem value="Ended">Ended</SelectItem>
                   </SelectContent>
                 </Select>
 
