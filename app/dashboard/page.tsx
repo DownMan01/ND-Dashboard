@@ -15,7 +15,7 @@ type Collection = Database["public"]["Tables"]["airdrop_collections"]["Row"]
 export default function DashboardPage() {
   const [collections, setCollections] = useState<Collection[]>([])
   const [filteredCollections, setFilteredCollections] = useState<Collection[]>([])
-  const [stageFilter, setStageFilter] = useState<string>("all")
+  const [stageFilter, setStageFilter] = useState<string>("All")
   const [isLoading, setIsLoading] = useState(true)
   const { user } = useAuth()
 
@@ -44,7 +44,7 @@ export default function DashboardPage() {
   }, [user])
 
   useEffect(() => {
-    if (stageFilter === "all") {
+    if (stageFilter === "All") {
       setFilteredCollections(collections)
     } else {
       setFilteredCollections(collections.filter((collection) => collection.stage === stageFilter))
@@ -52,28 +52,28 @@ export default function DashboardPage() {
   }, [stageFilter, collections])
 
   const stats = {
-    total: collections.length,
-    active: collections.filter((c) => c.stage === "active").length,
-    upcoming: collections.filter((c) => c.stage === "upcoming").length,
-    ended: collections.filter((c) => c.stage === "ended").length,
+    Total: collections.length,
+    Active: collections.filter((c) => c.stage === "Active").length,
+    Upcoming: collections.filter((c) => c.stage === "Upcoming").length,
+    Ended: collections.filter((c) => c.stage === "Ended").length,
   }
 
   // Calculate percentage changes (mock data for demonstration)
   const percentChanges = {
-    total: 12,
-    active: 8,
-    upcoming: 15,
-    ended: -5,
+    Total: 12,
+    Active: 8,
+    Upcoming: 15,
+    Ended: -5,
   }
 
   // Get stage color
   const getStageColor = (stage: string) => {
     switch (stage) {
-      case "active":
+      case "Active":
         return "bg-green-100 text-green-800 border-green-200"
-      case "upcoming":
+      case "Upcoming":
         return "bg-blue-100 text-blue-800 border-blue-200"
-      case "ended":
+      case "Ended":
         return "bg-gray-100 text-gray-800 border-gray-200"
       default:
         return "bg-gray-100 text-gray-800 border-gray-200"
@@ -106,17 +106,17 @@ export default function DashboardPage() {
             </div>
           </CardHeader>
           <CardContent className="p-3 sm:p-6 sm:pt-4">
-            <div className="text-xl sm:text-2xl font-bold">{stats.total}</div>
+            <div className="text-xl sm:text-2xl font-bold">{stats.Total}</div>
             <div className="flex items-center mt-1">
               <span
-                className={`text-xs ${percentChanges.total >= 0 ? "text-green-600" : "text-red-600"} flex items-center`}
+                className={`text-xs ${percentChanges.Total >= 0 ? "text-green-600" : "text-red-600"} flex items-center`}
               >
-                {percentChanges.total >= 0 ? (
+                {percentChanges.Total >= 0 ? (
                   <TrendingUp className="mr-1 h-3 w-3" />
                 ) : (
                   <LineChart className="mr-1 h-3 w-3" />
                 )}
-                {Math.abs(percentChanges.total)}% from last month
+                {Math.abs(percentChanges.Total)}% from last month
               </span>
             </div>
           </CardContent>
@@ -130,17 +130,17 @@ export default function DashboardPage() {
             </div>
           </CardHeader>
           <CardContent className="p-3 sm:p-6 sm:pt-4">
-            <div className="text-xl sm:text-2xl font-bold">{stats.active}</div>
+            <div className="text-xl sm:text-2xl font-bold">{stats.Active}</div>
             <div className="flex items-center mt-1">
               <span
-                className={`text-xs ${percentChanges.active >= 0 ? "text-green-600" : "text-red-600"} flex items-center`}
+                className={`text-xs ${percentChanges.Active >= 0 ? "text-green-600" : "text-red-600"} flex items-center`}
               >
-                {percentChanges.active >= 0 ? (
+                {percentChanges.Active >= 0 ? (
                   <TrendingUp className="mr-1 h-3 w-3" />
                 ) : (
                   <LineChart className="mr-1 h-3 w-3" />
                 )}
-                {Math.abs(percentChanges.active)}% from last month
+                {Math.abs(percentChanges.Active)}% from last month
               </span>
             </div>
           </CardContent>
@@ -154,17 +154,17 @@ export default function DashboardPage() {
             </div>
           </CardHeader>
           <CardContent className="p-3 sm:p-6 sm:pt-4">
-            <div className="text-xl sm:text-2xl font-bold">{stats.upcoming}</div>
+            <div className="text-xl sm:text-2xl font-bold">{stats.Upcoming}</div>
             <div className="flex items-center mt-1">
               <span
-                className={`text-xs ${percentChanges.upcoming >= 0 ? "text-green-600" : "text-red-600"} flex items-center`}
+                className={`text-xs ${percentChanges.Upcoming >= 0 ? "text-green-600" : "text-red-600"} flex items-center`}
               >
-                {percentChanges.upcoming >= 0 ? (
+                {percentChanges.Upcoming >= 0 ? (
                   <TrendingUp className="mr-1 h-3 w-3" />
                 ) : (
                   <LineChart className="mr-1 h-3 w-3" />
                 )}
-                {Math.abs(percentChanges.upcoming)}% from last month
+                {Math.abs(percentChanges.Upcoming)}% from last month
               </span>
             </div>
           </CardContent>
@@ -178,17 +178,17 @@ export default function DashboardPage() {
             </div>
           </CardHeader>
           <CardContent className="p-3 sm:p-6 sm:pt-4">
-            <div className="text-xl sm:text-2xl font-bold">{stats.ended}</div>
+            <div className="text-xl sm:text-2xl font-bold">{stats.Ended}</div>
             <div className="flex items-center mt-1">
               <span
-                className={`text-xs ${percentChanges.ended >= 0 ? "text-green-600" : "text-red-600"} flex items-center`}
+                className={`text-xs ${percentChanges.Ended >= 0 ? "text-green-600" : "text-red-600"} flex items-center`}
               >
-                {percentChanges.ended >= 0 ? (
+                {percentChanges.Ended >= 0 ? (
                   <TrendingUp className="mr-1 h-3 w-3" />
                 ) : (
                   <LineChart className="mr-1 h-3 w-3" />
                 )}
-                {Math.abs(percentChanges.ended)}% from last month
+                {Math.abs(percentChanges.Ended)}% from last month
               </span>
             </div>
           </CardContent>
@@ -210,10 +210,10 @@ export default function DashboardPage() {
                 <SelectValue placeholder="Filter by stage" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Stages</SelectItem>
-                <SelectItem value="active">Active</SelectItem>
-                <SelectItem value="upcoming">Upcoming</SelectItem>
-                <SelectItem value="ended">Ended</SelectItem>
+                <SelectItem value="All">All Stages</SelectItem>
+                <SelectItem value="Active">Active</SelectItem>
+                <SelectItem value="Upcoming">Upcoming</SelectItem>
+                <SelectItem value="Ended">Ended</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -283,7 +283,7 @@ export default function DashboardPage() {
               <Gift className="h-12 w-12 text-muted-foreground mb-4" />
               <h3 className="text-lg font-semibold mb-2">No Collections Found</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                {stageFilter === "all"
+                {stageFilter === "All"
                   ? "Create your first airdrop collection to get started."
                   : `No ${stageFilter} collections found.`}
               </p>
@@ -322,14 +322,14 @@ export default function DashboardPage() {
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-xs sm:text-sm font-medium">Active</span>
                   <span className="text-xs sm:text-sm font-medium">
-                    {stats.active} / {stats.total}
+                    {stats.Active} / {stats.Total}
                   </span>
                 </div>
                 <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
                   <div
                     className="h-2 rounded-full bg-green-500"
                     style={{
-                      width: `${(stats.active / (stats.total || 1)) * 100}%`,
+                      width: `${(stats.Active / (stats.Total || 1)) * 100}%`,
                     }}
                   />
                 </div>
@@ -338,14 +338,14 @@ export default function DashboardPage() {
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-xs sm:text-sm font-medium">Upcoming</span>
                   <span className="text-xs sm:text-sm font-medium">
-                    {stats.upcoming} / {stats.total}
+                    {stats.Upcoming} / {stats.Total}
                   </span>
                 </div>
                 <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
                   <div
                     className="h-2 rounded-full bg-blue-500"
                     style={{
-                      width: `${(stats.upcoming / (stats.total || 1)) * 100}%`,
+                      width: `${(stats.Upcoming / (stats.Total || 1)) * 100}%`,
                     }}
                   />
                 </div>
@@ -354,14 +354,14 @@ export default function DashboardPage() {
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-xs sm:text-sm font-medium">Completed</span>
                   <span className="text-xs sm:text-sm font-medium">
-                    {stats.ended} / {stats.total}
+                    {stats.Ended} / {stats.Total}
                   </span>
                 </div>
                 <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
                   <div
                     className="h-2 rounded-full bg-gray-500"
                     style={{
-                      width: `${(stats.ended / (stats.total || 1)) * 100}%`,
+                      width: `${(stats.Ended / (stats.Total || 1)) * 100}%`,
                     }}
                   />
                 </div>
